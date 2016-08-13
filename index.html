@@ -1,10 +1,70 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Ben Christel's Homepage</title>
+    <title>Ben Christel's Heisenblog</title>
   </head>
   <body>
-    <h1>Working Title</h1>
-    <p>Hello, world!<p>
+    <h1>Ben Christel's Heisenblog</h1>
+    <p><em>(Don't worry, I actually can
+      <a href="http://benchristel.github.io/music/">modern</a>
+      <a href="http://benchristel.github.io/ji/">web</a>
+      <a href="https://github.com/benchristel/gulp-express-example">development</a>.)
+    </em></p>
+
+    <h2>Latest Post</h2>
+
+    <p><a id="latest-post"></a></p>
+
+    <h2>Random Posts</h2>
+
+    <div id="random-posts"></div>
+
+    <script>
+
+      var allPosts = [
+      // add new posts at the top.
+      ['priorities.html', 'Priorities'],
+      ['the-difference.html', 'The Difference'],
+      ['indispensable.html', 'Indispensable'],
+      ['immortality.html', 'Immortality']
+      ]
+
+      var latestPost = document.getElementById('latest-post')
+      latestPost.href = allPosts[0][0]
+      latestPost.innerText = allPosts[0][1]
+
+      var randomSample = sample(2, allPosts.slice(1))
+      var linkContainer = document.getElementById('random-posts')
+
+      for (var i = 0; i < randomSample.length; i++) {
+        var url = randomSample[i][0]
+        var title = randomSample[i][1]
+
+        var a = document.createElement('a')
+        a.href = url
+        a.innerText = title
+
+        var p = document.createElement('p')
+        p.appendChild(a)
+
+        linkContainer.appendChild(p)
+      }
+
+      function sample(n, array) {
+        var copy = array.slice()
+        var sampled = []
+
+        for (var count = 0; count < n; count++) {
+          var index = randomIn(copy.length)
+          sampled.push(copy.splice(index, 1)[0])
+        }
+
+        return sampled
+      }
+
+      function randomIn(n) {
+        return Math.floor(Math.random() * n)
+      }
+    </script>
   </body>
 </html>
