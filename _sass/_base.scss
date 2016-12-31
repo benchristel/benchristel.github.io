@@ -12,11 +12,6 @@ body {
   font-size: 16px;
 }
 
-code, pre, tt {
-  font-family: Menlo, Monaco, monospace;
-  font-size: 14px;
-}
-
 // --- colors ----------------------------------------------
 
 $electric-blue: #4ef;
@@ -31,6 +26,18 @@ $gutter-padding: 24px;
 @mixin heading-font {
   font-family: 'Roboto', sans-serif;
   font-weight: 900;
+}
+
+@mixin block-margin {
+  margin-top: 1.2em;
+  margin-bottom: 1.2em;
+}
+
+@mixin body-text {
+  word-spacing: 0.03em;
+  letter-spacing: -0.02em;
+  line-height: 140%;
+  text-align: justify;
 }
 
 .container {
@@ -84,7 +91,8 @@ a {
   li {
     list-style: none;
     // font-family: Roboto, sans-serif;
-    font-size: 16px;
+    font-size: 14px;
+    margin: 1em 0;
   }
 
   > :first-child {
@@ -110,9 +118,12 @@ a {
   }
 
   p {
-    line-height: 140%;
-    margin: 1.2em 0;
-    text-align: justify;
+    @include block-margin;
+    @include body-text;
+
+    code {
+      font-size: 14px;
+    }
   }
 
   h1 {
@@ -127,4 +138,47 @@ a {
     font-size: 16px;
     text-transform: uppercase;
   }
+
+  ul, ol {
+    @include block-margin;
+    @include body-text;
+    margin-left: 24px;
+    line-height: 140%;
+  }
+
+  pre, code.highlighter-rouge {
+    font-family: Menlo, Monaco, monospace;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    background-color: #f8f8f8;
+    line-height: 140%;
+  }
+
+  pre {
+    @include block-margin;
+    font-size: 14px;
+    padding: 6px;
+    margin: 0 -6px;
+    overflow-x: auto;
+  }
+
+  code.highlighter-rouge {
+    padding: 0 3px;
+  }
+}
+
+
+// --- syntax highlighting overrides -----------------------
+
+$code-orange: #ff8000;
+$code-light: #888;
+$code-indigo: #00a;
+$code-red: #a00;
+
+.language-haskell {
+  // also used for Elm.
+
+  .kt { color: $code-orange } // type keyword
+  .cm { color: $code-light } // comment
+  .mi { color: $code-red } // integers
 }
