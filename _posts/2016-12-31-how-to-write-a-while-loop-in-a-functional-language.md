@@ -11,9 +11,15 @@ Learning a functional language is a mind-bending experience if you're used to im
 
 Although Elm doesn't have built-in support for `while` loops, it's not very hard to come up with our own `while` function that does the job very nicely. We can analyze the concept of a `while` loop in imperative languages and see how each of its component concepts maps onto a functional language.
 
-In an imperative language like Java, a `while` loop has three main components.
+In an imperative language like C or Java, three things are required for a sensical `while` loop:
 
-- Some **state**, in the form of variables defined outside the loop body. The loop will update the value of these variables as it runs—that's the only way a loop can have any effect on the rest of the program. Although imperative programs sometimes use empty while loops whose only job is to eat up CPU time, we won't consider that use case here since you'd pretty much never want to spin the CPU in a functional language. Imperative programs can also make use of while loops that create externally-visible side effects instead of changing variables. For example, the following loop (in C) prints "hello world" forever.
+- Some **state**, in the form of variables defined outside the loop body. The loop will update the value of these variables as it runs—that's the only way a loop can have any effect on the rest of the program.
+
+- A **condition** which determines when the loop is finished. Note that the condition must reference some part of the loop's **state**—if it didn't, the body of the loop could never cause the value of the condition to change, and the loop would run forever.
+
+- A **body** which performs some computation and updates the **state**.
+
+Note that imperative loops may also cause or react to **side effects**. For example, here's a loop in C that has the side effect of printing to standard output:
 
 ```c
 while (1) {
@@ -21,20 +27,19 @@ while (1) {
 }
 ```
 
-Since functional functions cannot have side effects like the `printf` call above, we don't have to think about this use case when translating `while` loops to a functional language.
+Similarly, the condition of an imperative loop might watch for side effects triggered by some other process, like a file being written to the filesystem.
 
-- A **condition** which determines when the loop is finished. Note that the condition must reference some part of the loop's **state**—if it didn't, the body of the loop could never cause the value of the condition to change, and the loop would run forever. In imperative languages, a while loop's condition might not reference any of the state variables—it might be watching for changes or events triggered by some other process, like a file being written to the filesystem. However, that use case doesn't apply to functional languages because in that universe the value of a function is determined by its arguments, and can't depend on external factors like the filesystem or other processes.
-- A **body** which performs some computation and updates the **state**.
+Since functional code cannot cause or depend on side effects, we don't have to consider side effects when translating `while` loops to a functional language.
 
 # Translating while loops to Elm
 
 Now we can take a stab at writing a `while` function in Elm.
 
-We can represent the body of the loop as a function `state -> state`. That is, the function takes a `state` value as an argument and returns the new state to use for the next iteration of the loop.
+We can represent the **body** of the loop as a function `state -> state`. That is, the function takes a `state` value as an argument and returns the new `state` to use for the next iteration of the loop.
 
-We can represent the condition as a function `state -> Bool`. Again, this has a very close parallel in the imperative world.
+We can represent the **condition** as a function `state -> Bool`. Again, this has a very close parallel in the imperative world.
 
-So what does the concept of state translate to? Well, the state of a loop is just a collection of values, so in a functional type system it could be any type the programmer wants. The only restriction is that the condition and body must agree on what the type of `state` is. In Elm, we can represent this by using a type variable, denoted by a lowercase `state` in the type signature.
+So what does the concept of **state** translate to? Well, the state of a loop can be any collection of values. The only restriction is that the condition and body must agree on what the type of `state` is. In Elm, we can represent this by using a type variable, denoted by a lowercase `state` in the type signature.
 
 ```haskell
 while : (state -> Bool) -> state -> (state -> state) -> state
@@ -58,7 +63,7 @@ In English:
 
 # Checking the Collatz conjecture
 
-Let's see an example in action. We'll write a program that checks the [Collatz conjecture](https://en.wikipedia.org/wiki/Collatz_conjecture) for any positive integer, and outputs the number of iterations required to reach 1.
+Now let's use our `while` function and see how the resulting code looks. To test it out, we'll write a program that checks the [Collatz conjecture](https://en.wikipedia.org/wiki/Collatz_conjecture).
 
 The Collatz conjecture is an unproven statement about what happens when you repeatedly apply a certain calculation to a number. The basic idea is this:
 
@@ -69,7 +74,9 @@ The Collatz conjecture is an unproven statement about what happens when you repe
 
 The sequence of numbers generated by this repeated calculation is sometimes called the "hailstone sequence" because, like a hailstone in a storm, `n` often goes up and down many times before finally falling to 1.
 
-Now, if you pick a positive integer at random and apply the calculation above enough times, you'll eventually reach 1. It works for every number that's ever been tried. But of course that doesn't constitute a proof that this would be true for *any* number, since there could still be a counterexample out there. And that's why the Collatz conjecture is just a conjecture: we don't know how to prove that the sequence always reaches 1. Such a proof is, in the words of mathematician Jeffrey Lagarias, ["completely out of reach of present day mathematics."](https://en.wikipedia.org/wiki/Collatz_conjecture#cite_note-10)
+Now, if you pick a positive integer at random and apply the calculation above enough times, you'll eventually reach 1. It works for every number that's ever been tried. But of course that doesn't constitute a proof that this would be true for *any* number, since there could still be a counterexample out there. And that's why the Collatz conjecture is just a conjecture: we don't know how to prove that the sequence always reaches 1. Mathema&shy;tician Jeffrey Lagarias remarked that such a proof is ["completely out of reach of present day mathematics."](https://en.wikipedia.org/wiki/Collatz_conjecture#cite_note-10)
+
+Here's a function that checks the Collatz conjecture for any positive integer, and returns the number of iterations required to reach 1.
 
 ```haskell
 collatz : Int -> Int
