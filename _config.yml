@@ -1,0 +1,20 @@
+# Site settings
+title: "Zeroth-World Problems"
+author: "Ben Christel"
+description: "Ben Christel's blog about programming, software development, language, and philosophy"
+keywords: "Software Engineering, Software Development, Programming, JavaScript, Linguistics, Language, Philosophy"
+biography: "HELLO, THIS IS DOG. I AM ON THE PHONE. YES."
+colophon: 'Made with <a href="https://jekyllrb.com/">Jekyll</a> using the <a href="http://jekyllthemes.org/themes/papyrus-theme/">Papyrus theme</a> by <a href="http://hugosereno.eu/">Hugo Ferreira</a>.<br/>This part of the text is called a "colophon"!'
+
+baseurl: ""
+url: "benchristel.github.io"
+
+github_username: benchristel
+google-analytics: asdf
+
+simple_search: http://google.com/search
+markdown: kramdown
+highlighter: pygments
+permalink: /blog/:year/:month/:day/:title/
+kramdown:
+  input: GFM

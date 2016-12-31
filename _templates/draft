@@ -1,0 +1,10 @@
+---
+layout: {{ layout }}
+title: "{{ title }}"
+date: {{ date }}
+author: Ben Christel
+keywords: ""
+description: ""
+categories:
+  - Software Development
+---

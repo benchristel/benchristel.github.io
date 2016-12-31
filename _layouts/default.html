@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Zeroth-World Problems :: Ben Christel's Blog</title>
+    <link href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700|Roboto:400,900&amp;subset=latin-ext" rel="stylesheet">
+    <link rel="stylesheet" href="/css/main.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="page-title">Zeroth-World Problems</div>
+
+      <ul class="nav">
+        <h1>Most Recent First</h1>
+      {% for post in site.posts %}
+            <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
+      {% endfor %}
+      </ul>
+
+      <div class="content">
+       {{content}}
+      </div>
+    </div>
+  </body>
+</html>
