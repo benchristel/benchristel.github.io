@@ -168,18 +168,25 @@ a {
   }
 }
 
-
 // --- syntax highlighting overrides -----------------------
 
 $code-orange: #ff8000;
 $code-light: #888;
 $code-indigo: #00a;
-$code-red: #a00;
+$code-red: #c72323;
+$code-green: #080;
 
-.language-haskell {
+.language-haskell .highlight {
   // also used for Elm.
 
   .kt { color: $code-orange } // type keyword
   .cm { color: $code-light } // comment
   .mi { color: $code-red } // integers
+}
+
+.language-c .highlight {
+  .s  { color: $code-green; font-style: normal; } // strings
+  .mi { color: $code-red } // integers
+  .nf { color: $alt-color } // declarations
+  .k  { color: black }
 }
