@@ -27,3 +27,7 @@ It's also possible that while my weekdays are more free,
 my weekends are actually less free. I spend a lot more time
 doing personal and household maintenance stuff on weekends
 now—shopping, cooking, cleaning... that sort of thing.
+
+I also recall that I spent large swaths of time during my
+childhood being bored. I rarely have time to be bored now,
+and [maybe that's part of the problem](https://www.brainpickings.org/2014/06/19/adam-phillips-boredom/).
