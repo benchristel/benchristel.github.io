@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How to Write a While Loop in a Functional Language
+title: How to write a while loop in a functional language
 ---
 
 # How to write a while loop in a functional language
