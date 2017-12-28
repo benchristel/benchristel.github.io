@@ -32,7 +32,7 @@ hard-wrap every line. Some of the words are hard-hyphenated,
 so I can't just reflow the paragraphs without some manual
 effort. I like the way it looks monospaced, anyway.
 
-Elisions from the original text are marked by `[. . .]`
+Elisions from the original text are marked by `[. . .]`.
 
 ```
 Thursday, July 27
