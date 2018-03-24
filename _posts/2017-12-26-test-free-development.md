@@ -5,7 +5,7 @@ title: Test-free Development
 
 # Test-free Development
 
-When I started the [Grove II]() project, I decided to try an experiment:
+When I started the [Grove II](https://druidic.github.io/grove-ii/) project, I decided to try an experiment:
 what would happen if I didn't write any tests? It had been
 years since I wrote any significant chunk of code without
 doing TDD, and I'd started to wonder: if I didn't have
