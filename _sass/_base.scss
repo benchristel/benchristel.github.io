@@ -152,6 +152,7 @@ a {
   }
 
   blockquote {
+    @include block-margin;
     padding: 1px 12px 1px 12px;
     border-left: 3px solid #aaa;
     font-color: #555;
