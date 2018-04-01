@@ -7,6 +7,11 @@ title: I am not on Twitter
 
 But I do have a microblog, and this is it.
 
+## Apr 1, 2018
+
+Software versions considered harmful? An interesting alternative based around contracts:
+<http://hintjens.com/blog:85>
+
 ---
 
 ## Feb 12, 2017
