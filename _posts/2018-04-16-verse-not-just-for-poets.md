@@ -10,6 +10,8 @@ demo](https://benchristel.github.io/pico-fermi-bagel) of my
 browser-based programming environment
 [Verse](https://github.com/druidic/verse).
 
+![A screenshot of the Verse editor running a simple game](/assets/verse-demo.png)
+
 At first glance, Verse seems reminiscent of something like
 [JSFiddle](https://jsfiddle.net), but it has a few important
 differences:
