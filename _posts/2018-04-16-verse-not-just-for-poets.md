@@ -31,7 +31,8 @@ differences:
 
 - It comes with an opinionated framework that facilitates
   I/O, imperative programming using simulated threads, and
-  Redux-like state manage&shy;ment with runtime typechecking.
+  Redux-like state manage&shy;ment with runtime typechecking
+  and automatic persistence.
 
 - It doesn't let you waste time messing with HTML and CSS.
   If you want a terminal-style app that takes textual input
