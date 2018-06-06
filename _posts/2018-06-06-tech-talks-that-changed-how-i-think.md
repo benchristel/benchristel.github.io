@@ -100,11 +100,12 @@ are fast enough to run on every keystroke.
 
 ## "Your Brain At Work" — David Rock
 
-David argues that
-programmers often overvalue rational thought and therefore
-over-strain their prefrontal cortex, which is one of the
-weakest and most inefficient parts of the brain. He provides
-some concrete tips on how to make the most of our limited
-attention and rational processing ability.
+David argues that programmers often overvalue rational
+thought and therefore over-strain their prefrontal
+cortex—one of the weakest and least efficient parts of
+the brain. He provides some concrete tips on how to make the
+most of our limited attention and rational processing
+ability while giving the other parts of our brain the
+respect and care they deserve.
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/XeJSXfXep4M" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
