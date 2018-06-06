@@ -69,7 +69,8 @@ incorporate OO wisdom into their programs.
 ## "Making Badass Developers" — Kathy Sierra
 
 The one thing software developers can count on is that
-*things will change*. Adapting to change means
+*things will change*. The languages and frameworks we use
+today will evolve, or be replaced. Adapting to change means
 learning new things, but this can seem daunting, [even
 overwhelming](https://hackernoon.com/how-it-feels-to-learn-javascript-in-2016-d3a717dd577f).
 Kathy starts off by normalizing this feeling
