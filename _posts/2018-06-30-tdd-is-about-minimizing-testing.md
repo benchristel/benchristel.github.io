@@ -251,7 +251,7 @@ its benefits. Fortunately, there are many resources you
 can point people to if they express interest in learning
 TDD:
 
-- http://exercism.io/ provides coding
+- [Exercism](http://exercism.io/) provides coding
   exercises in over 30 different languages—tests included.
   It's a great way to start thinking test-first.
 - The [Hexagonal TDD in Ruby](http://moonmaster9000.github.io/hexagonal_tdd_in_ruby/)
