@@ -292,17 +292,20 @@ tests you write probably won't fail.
 
 TDD will save you money, for all of these reasons:
 
+- Automated testing means you don't have to pay QA engineers
+  to do stuff a robot could do. Instead, they can do
+  [exploratory testing](https://en.wikipedia.org/wiki/Exploratory_testing) to discover usability issues and subtle bugs.
 - Unit testing lets you write fewer tests, because the number of tests needed to cover all cases grows linearly with
 the size of the codebase. This contrasts sharply with integrated testing,
 where the number of tests you need grows exponentially.
 - Unit testing minimizes the time developers spend idle waiting
   for tests to run.
 - TDD ensures that your tests are small and simple, so
-  developers will spend less time trying to understand what
-  a test does.
+  developers will spend less time figuring out what
+  each test does.
 - TDD ensures that code is reusable, allowing you to write
   less code overall.
-- TDD makes it less expensive to change your code—whether
+- TDD makes it less risky to change your code—whether
   to add a feature, fix a bug, or improve the design.
 - TDD tells you when you don't need any more tests.
 
