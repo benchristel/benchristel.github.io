@@ -137,7 +137,7 @@ However, when unit tests are written after the code is
 complete, they have their own set of pitfalls. The main
 one is the difficulty of isolating the units of code to
 be tested. When modules are not designed
-explicitly for testability, it's all to easy to let them
+explicitly for testability, it's all too easy to let them
 interact with a large number of other systems. A module that
 makes network calls, gets the current time, generates random
 data, and writes to a database is going to be difficult to
