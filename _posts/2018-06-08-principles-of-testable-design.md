@@ -5,10 +5,10 @@ title: Principles of Testable Design
 
 # Principles of Testable Design
 
-I have to come clean—I don't like the term TDD. First of
+I have to confess I don't like the term "TDD". First of
 all because it's ambiguous: to most people it stands for
 "test-driven development," but some insist that "test-driven
-design" is a more fitting expansion. Secondly, I don't think
+design" is a more fitting expansion. Second, I don't think
 the word "driven" is well chosen. Tests do not *drive*
 code. They do not *drive* the design. *Programmers do*.
 Driving means making decisions, observing, reacting.
@@ -20,10 +20,10 @@ bordering on nonsensical.
 There is
 [this persistent myth](./2017-01-15-don-t-listen-to-your-tests.md)
 that well-designed code somehow emerges from a suite
-of sufficiently magical unit tests. This idea is—[to quote
-veteran TDDer Bob Martin](http://blog.cleancoder.com/uncle-bob/2017/03/03/TDD-Harms-Architecture.html)—"horse shit." Yet I think the term
-"test-driven," regardless of what meaning is assigned to the
-second D, has contributed to this misunderstanding and
+of sufficiently magical unit tests, with no human creativity
+required. This idea is—[to quote
+veteran TDDer Bob Martin](http://blog.cleancoder.com/uncle-bob/2017/03/03/TDD-Harms-Architecture.html)—"horse shit." Yet I think the phrase
+"test-driven" has contributed to this misunderstanding and
 probably caused a lot of people to reject TDD as a practice
 because it failed to live up to the myth.
 
@@ -41,7 +41,7 @@ general, reusable, and comprehensible. Or, if you don't
 understand design, you continue writing tightly-coupled code
 with complicated, brittle tests, and you end up tearing your
 hair out and then writing blog posts about how [TDD is
-dead](http://david.heinemeierhansson.com/2014/tdd-is-dead-long-live-testing.html).
+dead and Capybara is the future](http://david.heinemeierhansson.com/2014/tdd-is-dead-long-live-testing.html).
 
 To shield you from that second fate, I present the
 heuristics I have used over the last few years to design
