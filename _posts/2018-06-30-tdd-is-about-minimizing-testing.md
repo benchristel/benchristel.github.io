@@ -5,17 +5,27 @@ title: TDD Is About Minimizing Testing
 
 # TDD Is About Minimizing Testing
 
-If you've been doing test-driven development for any length
-of time, you'll have heard the criticisms and the rebuttals.
+If you've read much about test-driven development, you'll
+likely have heard many of the
+[criticisms](http://david.heinemeierhansson.com/2014/test-induced-design-damage.html)
+and the
+[rebuttals](http://blog.cleancoder.com/uncle-bob/2017/12/18/Excuses.html).
+To wit: TDD is a force for design (good or bad), or a matter of
+professionalism, or a sign of weakness, or religious
+dogma that serves no end but Kent Beck's book sales,
+and on and on the arguments go.
 In this post, I want to advocate for TDD from a slightly
 different angle—one you probably haven't heard before.
 
+TDD is about *saving your company money*.
+
 **The purpose of TDD is to *minimize the amount of testing
 you do while maximizing the value of each test*.**
-Test less, test better. The ability to write fewer tests
+Test less, test better. The ability to write and run fewer tests
 means that
 TDD, [correctly applied](/blog/2018/06/08/principles-of-testable-design/),
-will save your company thousands if not millions of actual dollars.
+will let your development team minimize the amount time and
+money they spend testing, without impacting quality.
 
 To see why TDD is effective at doing this, let's look at
 some of the alternatives.
@@ -260,7 +270,7 @@ TDD:
   from external dependencies like the network.
 - Consultants like [Pivotal Labs](https://pivotal.io/labs)
   can help incorporate TDD into your workflow.
-  (Disclaimer: I work for Pivotal, but
+  (Full disclosure: I work for Pivotal, but
   they have not endorsed or funded this post.)
 
 ## Coda: How Much Testing Is Enough?
