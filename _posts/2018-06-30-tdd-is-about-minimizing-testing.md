@@ -221,7 +221,7 @@ in turn reduces the overall cost of development and
 maintenance.
 
 Done well, TDD solves the readability problems that come
-from proliferating test doubles. It's *really
+from prolifer&shy;ating test doubles. It's *really
 hard* to write a test with complicated test doubles before
 the production code exists. So if you do disciplined TDD,
 and force yourself to write the tests first,
