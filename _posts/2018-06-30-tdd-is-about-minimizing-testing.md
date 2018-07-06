@@ -10,7 +10,7 @@ likely have heard many of the
 [criticisms](http://david.heinemeierhansson.com/2014/test-induced-design-damage.html)
 and the
 [rebuttals](http://blog.cleancoder.com/uncle-bob/2017/12/18/Excuses.html).
-To wit: TDD is a force for design (good or bad), or a matter of
+TDD is a force for design (good or bad), or a matter of
 professionalism, or a sign of weakness, or religious
 dogma that serves no end but Kent Beck's book sales,
 and on and on the arguments go.
@@ -19,8 +19,8 @@ different angle—one you probably haven't heard before.
 
 TDD is about *saving your company money*.
 
-**The purpose of TDD is to *minimize the amount of testing
-you do while maximizing the value of each test*.**
+The purpose of TDD is to *minimize the amount of testing
+you do while maximizing the value of each test*.
 Test less, test better. The ability to write and run fewer tests
 means that
 TDD, [correctly applied](/blog/2018/06/08/principles-of-testable-design/),
@@ -59,16 +59,19 @@ If something isn't working, the obvious fix is to
 automate it; that way, it can fail to provide value
 faster.
 Thus, we arrive at the solution to the QA
-bottleneck: automated integrated testing.
+bottleneck: automated end-to-end testing.
 
-## Post-Development Integrated Testing
+## Post-Development End-to-end Testing
 
 A common way of doing test automation is to write tests
 in Capybara or some other framework that pokes and prods the UI
 the way a user would. Basically, this approach automates
 what would otherwise be the job of a really bored QA person.
+I call these tests *end-to-end* tests because each test
+exercises all the layers of the system, from the UI down
+to the data storage.
 
-The problems with integrated tests are many.
+The problems with end-to-end tests are many.
 
 - They are time-consuming to write.
 - They are difficult to read.
@@ -78,8 +81,10 @@ The problems with integrated tests are many.
 - They often depend on external services or precise timings
   and therefore can fail "flakily", for reasons unrelated to
   the code they're supposed to be testing.
-- They often can't even run on developers' workstations,
-  meaning your continuous integration build is always red.
+- They often can't even run on developers' workstations.
+  That means developers have to push their code to source
+  control to find out if it works, and *that* means
+  your continuous integration build is always red.
 - They often require expensive infrastructure (e.g. cloud
   VMs, or even dedicated physical hardware).
 - They're unlikely to cover every behavior of
@@ -95,8 +100,12 @@ The problems with integrated tests are many.
   able to understand how your tests are organized or why.
 - Did I mention they take a *really long time to run*?
 
-All of these problems are bad, but the slowness is the
-real killer. It means developers will either be idle for
+In other words, end-to-end tests have most of the problems
+of a human QA team, with the additional downside that
+they're made out of code which has to be understood and
+maintained.
+
+The slowness of end-to-end tests means that developers will either be idle for
 hours while the tests run (unlikely, because most good
 programmers *actually like writing code*) or they'll start
 some other task and then get interrupted hours later by the
@@ -115,9 +124,8 @@ infrequently, risk piles up. The more work I do in between
 test runs, the more I'll have to throw away if the tests
 reveal a conceptual flaw in my design.
 
-All of this means that integrated testing is expensive.
-It's not quite as expensive as relying on manual QA,
-nor as potentially disastrous as forgoing testing entirely,
+All of this means that end-to-end testing is expensive.
+It's probably not as expensive as relying on manual QA,
 but it is expensive. And, just like QA, it does nothing to
 discourage developers from writing horrific, bug-prone code
 under time pressure. Over a product's lifespan, this can
@@ -128,7 +136,7 @@ fewer bugs.
 ## Post-Development Unit Testing
 
 Isolated unit tests fix many of the problems associated with
-integrated tests:
+end-to-end tests:
 
 - They run quickly. [It is not unreasonable to expect a
   suite of unit tests to complete in under a second](https://www.youtube.com/watch?v=RAxiiRPHS9k), though
@@ -138,10 +146,9 @@ integrated tests:
   the cause of a failure is usually straightforward.
 - They are deterministic and do not fail flakily.
 - They can run on developers' workstations.
-- 100% code coverage is actually achievable. When you don't
-  have to deal with the combinatoric explosion of codepaths
-  precipitated by integrated testing, you end up writing
-  fewer tests, and getting more value out of each one.
+- Your tests can fully specify the functionality of your code,
+  with far fewer test cases than would be required if you
+  relied solely on end-to-end testing.
 
 However, when unit tests are written after the code is
 complete, they have their own set of pitfalls. The main
@@ -180,13 +187,13 @@ downsides:
   your refactoring didn't change behavior? Answer: you don't.
 - Because unit tests cannot (by their nature) check that the
 units interoperate properly, a minimal number of *integration
-tests* (note the distinction from *integrat-**ed** tests*)
+tests*
 is usually required to verify that the program as a whole
 actually works. It's important to note that integration
 tests *only* target the interactions between architectural
 layers; they are not meant to provide comprehensive testing
 of the system's behavior. However, integration tests retain
-some of the downsides of integrated testing. Specifically,
+some of the downsides of end-to-end testing. Specifically,
 they are slow and flaky, and often can't run on
 developers' workstations.
 
