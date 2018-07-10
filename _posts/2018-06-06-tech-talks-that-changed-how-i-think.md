@@ -60,9 +60,7 @@ programming and object orientation are somehow mutually
 exclusive disciplines. She provides examples of
 object-oriented code that could benefit from the application
 of functional patterns. The talk is aimed at developers who
-are used to object-oriented programming, but the same
-insights could be used by functional programmers to
-incorporate OO wisdom into their programs.
+are used to object-oriented programming.
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/GpXsQ-NIKXY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
