@@ -4,7 +4,9 @@
 .highlight {
     .c     {  color: lighten($text-color, 35%); font-style: italic } // Comment
     .err   {  } // Error
-    .k     {  color: $alt-color; font-weight: bold } // Keyword
+    .k,                     // Keyword
+    .kc,                    // Keyword.Constant
+    .kd    {  color: #d0a } // Keyword.Declaration
     .o     {  font-weight: bold }  // Operator
     .cm    {  font-style: italic } // Comment.Multiline
     .cp    {  font-weight: bold }  // Comment.Preproc
@@ -22,8 +24,6 @@
     .gs    {  font-weight: bold } // Generic.Strong
     .gu    {  } // Generic.Subheading
     .gt    {  } // Generic.Traceback
-    .kc    {  font-weight: bold } // Keyword.Constant
-    .kd    {  font-weight: bold } // Keyword.Declaration
     .kp    {  font-weight: bold } // Keyword.Pseudo
     .kr    {  font-weight: bold } // Keyword.Reserved
     .kt    {  font-weight: bold } // Keyword.Type
@@ -54,7 +54,7 @@
     .si    {  } // Literal.String.Interpol
     .sx    {  } // Literal.String.Other
     .sr    {  } // Literal.String.Regex
-    .s1    {  } // Literal.String.Single
+    .s1    { color: #e00 } // Literal.String.Single
     .ss    {  } // Literal.String.Symbol
     .bp    {  } // Name.Builtin.Pseudo
     .vc    {  } // Name.Variable.Class
