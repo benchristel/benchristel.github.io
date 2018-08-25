@@ -7,13 +7,18 @@ title: The Bowling Kata in Verse
 
 You may have heard of [code katas](http://codekata.com/),
 but in case you haven't:
-they're small exercises, designed to take perhaps half an
-hour to an hour, that we software developers can use to
-hone our craft through deliberate, focused practice.
+they're small coding exercises that programmers use to
+practice and hone their craft.
 
-You may have also heard of
-[Verse](https://benchristel.github.io/verse/) (but let's be
-real, you probably haven't). It's a browser-based development
+Katas aren't just about solving problems and
+they're not just about getting code to work. Rather, katas
+challenge us to think deeply and deliberately about the
+hundreds of tiny decisions we make while coding. By
+reflecting on our choices, we can learn to make better ones.
+
+In a few of my previous posts I've written about my side-project
+[Verse](https://benchristel.github.io/verse/).
+Verse is a browser-based development
 environment for crafting beautifully simple programs. It
 also happens to work very well for katas.
 
