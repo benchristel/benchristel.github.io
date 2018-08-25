@@ -1017,7 +1017,7 @@ scope.
 
 ```diff
   *run(score = 0, balls = 0) {
-_   let gameOverMessage = balls == 20 ? 'GAME OVER' : ''
+-   let gameOverMessage = balls == 20 ? 'GAME OVER' : ''
 +   let gameOverMessage = balls >= 20 ? 'GAME OVER' : ''
 
     yield startDisplay(() => [
