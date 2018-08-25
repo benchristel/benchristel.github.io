@@ -12,12 +12,12 @@
     .cp    {  font-weight: bold }  // Comment.Preproc
     .c1    {  font-style: italic } // Comment.Single
     .cs    {  font-weight: bold; font-style: italic } // Comment.Special
-    .gd    {  } // Generic.Deleted
+    .gd    { background-color: #fdd; color: #600; } // Generic.Deleted
     .gd .x {  } // Generic.Deleted.Specific
     .ge    {  font-style: italic } // Generic.Emph
     .gr    {  } // Generic.Error
     .gh    {  } // Generic.Heading
-    .gi    {  } // Generic.Inserted
+    .gi    {  background-color: #dfd; color: #060; } // Generic.Inserted
     .gi .x {  } // Generic.Inserted.Specific
     .go    {  } // Generic.Output
     .gp    {  } // Generic.Prompt
@@ -54,7 +54,7 @@
     .si    {  } // Literal.String.Interpol
     .sx    {  } // Literal.String.Other
     .sr    {  } // Literal.String.Regex
-    .s1    { color: #e00 } // Literal.String.Single
+    .s1    {  color: #e00 } // Literal.String.Single
     .ss    {  } // Literal.String.Symbol
     .bp    {  } // Name.Builtin.Pseudo
     .vc    {  } // Name.Variable.Class
