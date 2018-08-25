@@ -1086,9 +1086,11 @@ process as I test-drive code.
 
 I honestly didn't expect to be *surprised* by this kata
 in any way. I started with a pretty clear picture in my
-head of what I thought the code and the UI would
-end up looking like, but they didn't turn out that way
-at all.
+head of what I thought the program would
+end up looking like. But it didn't turn out the way I
+planned at all, and I think that's a very good thing.
+The code that grew naturally from the user stories and tests
+is simpler than anything I would have planned.
 
 The idea to record the score with a single keypress
 surprised me in the midst of the kata. I went in
