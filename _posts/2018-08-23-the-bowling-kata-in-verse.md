@@ -5,13 +5,49 @@ title: The Bowling Kata in Verse
 
 # The Bowling Kata in Verse
 
+You may have heard of [code katas](http://codekata.com/),
+but in case you haven't:
+they're small exercises, designed to take perhaps half an
+hour to an hour, that we software developers can use to
+hone our craft through deliberate, focused practice.
+
+You may have also heard of
+[Verse](https://benchristel.github.io/verse/) (but let's be
+real, you probably haven't). It's a browser-based development
+environment for crafting beautifully simple programs. It
+also happens to work very well for katas.
+
+In this post, I describe how I used Verse to solve a
+slightly modified version of the [Bowling Kata](http://codingdojo.org/kata/Bowling/).
+The objective of the kata is simple: score a game of [ten-pin bowling](https://en.wikipedia.org/wiki/Ten-pin_bowling).
+However, hidden in that simplicity are a lot of subtle
+decisions.
+
+The original kata doesn't have any UI requirement; the
+solution can be as simple as a function that's invoked by
+a suite of tests. I've added the
+twist that the program must have some kind of UI (however
+minimal) that a human can use to record a game.
+
+This post is going to be a long one: I describe each tiny
+change I make, along with my thought process at each
+step. That's kind of the point of the kata: to be very
+deliberate and reflect on each move you make. I use
+[test-driven development](https://www.martinfowler.com/bliki/TestDrivenDevelopment.html)
+throughout the kata, so I've added
+**red**, **green**, and **refactor** headings to the
+narrative to highlight where each step fits in the TDD cycle.
+
+If you don't mind spoilers, you can see [the half-finished kata here](/assets/bowling-kata/finished.html) (click the `RUN`
+button to see the program in action).
+
 ## The Stories
 
 - My score starts at 0
 - I can bowl and score one ball; my score is the number of pins knocked down
 - I can bowl and score multiple times; my score is the total number of pins knocked down
-- I cannot score more than 10 points per frame (and if I get
-  a strike, there is no second ball in that frame)
+- A game is ten frames long. In each frame I bowl twice.
+- If I bowl a strike, there is no second ball in that frame.
 - I can bowl a whole game of 10 frames (no bonuses for strikes or spares)
 - I get bonuses for strikes and spares (except for the 10th frame)
 - I can bowl 3 times in the 10th frame if I get a strike or spare,
@@ -779,3 +815,296 @@ define({
 ```
 
 This code is concise, and it's very idiomatic Verse :)
+
+## Limiting the number of frames
+
+Of course, a game of bowling doesn't go on forever. We need
+to limit the `retry` loop to ten frames (or twenty balls).
+
+Here's my first attempt at a failing test for that:
+
+```javascript
+define({
+  // ...
+
+  'test the game ends after 10 frames of 2 balls each'() {
+    simulate(run)
+      .receive(keyDown('5'))
+      .receive(keyDown('5'))
+
+      .receive(keyDown('5'))
+      .receive(keyDown('5'))
+
+      .receive(keyDown('5'))
+      .receive(keyDown('5'))
+
+      .receive(keyDown('5'))
+      .receive(keyDown('5'))
+
+      .receive(keyDown('5'))
+      .receive(keyDown('5'))
+
+      .receive(keyDown('5'))
+      .receive(keyDown('5'))
+
+      .receive(keyDown('5'))
+      .receive(keyDown('5'))
+
+      .receive(keyDown('5'))
+      .receive(keyDown('5'))
+
+      .receive(keyDown('5'))
+      .receive(keyDown('5'))
+
+      .receive(keyDown('5'))
+      .receive(keyDown('5'))
+
+      .assertDisplay(contains, 'GAME OVER')
+  },
+
+  // ...
+})
+```
+
+This test is a bit ridiculous. We can refactor the duplication
+away:
+
+```javascript
+define({
+  // ...
+
+  'test the game ends after 10 frames of 2 balls each'() {
+    const bowlFrames = numFrames => simulator => {
+      for (__ of range(1, numFrames)) {
+        simulator
+          .receive(keyDown('5'))
+          .receive(keyDown('5'))
+      }
+    }
+
+    simulate(run)
+      .do(bowlFrames(10))
+      .assertDisplay(contains, 'GAME OVER')
+  },
+
+  // ...
+})
+```
+
+Though I only refactor production code when all my tests are
+green, I like to refactor the tests themselves when they're
+red. It's all too easy to accidentally remove assertions or
+crucial setup from a test during refactoring, so that the
+test no longer tests what it's supposed to. By refactoring
+tests only when they're failing, I avoid that.
+
+We can make it pass by doing this:
+
+```javascript
+define({
+  // ...
+
+  *run(score = 0, balls = 0) {
+    let gameOverMessage = balls > 5 ? 'GAME OVER' : ''
+
+    yield startDisplay(() => [
+      `Total score: ${score}`,
+      'Bowl once and enter your score.',
+      'Press 0-9, or X for a strike',
+      gameOverMessage
+    ])
+
+    score += inputToNumber(yield waitForChar())
+    yield retry(run(score, balls + 1))
+  },
+
+  // ...
+})
+```
+
+I've intentionally mistyped the number of balls needed to
+end the game. The test passes despite this, so I think I
+need a more specific test.
+
+We can get the specificity we need by adding a negative
+assertion just before the event that is supposed to display
+the `GAME OVER` message:
+
+```javascript
+define({
+  // ...
+
+  'test the game ends after 10 frames of 2 balls each'() {
+    const bowlFrames = numFrames => simulator => {
+      for (__ of range(1, numFrames)) {
+        simulator
+          .receive(keyDown('5'))
+          .receive(keyDown('5'))
+      }
+    }
+
+    simulate(run)
+      .do(bowlFrames(9))
+      .receive(keyDown('5'))
+      .assertDisplay(not(contains), 'GAME OVER')
+      .receive(keyDown('5'))
+      .assertDisplay(contains, 'GAME OVER')
+  },
+
+  // ...
+})
+```
+
+Here's how we make it pass:
+
+```javascript
+define({
+  // ...
+
+  *run(score = 0, balls = 0) {
+    let gameOverMessage = balls == 20 ? 'GAME OVER' : ''
+
+    yield startDisplay(() => [
+      `Total score: ${score}`,
+      'Bowl once and enter your score.',
+      'Press 0-9, or X for a strike',
+      gameOverMessage
+    ])
+
+    score += inputToNumber(yield waitForChar())
+    yield retry(run(score, balls + 1))
+  },
+
+  // ...
+})
+```
+
+The `== 20` is a bit sketchy. I think I'll be able to
+keep bowling after the 20th ball, and indeed I can.
+
+```javascript
+define({
+  // ...
+
+  'test the game ends after 10 frames of 2 balls each'() {
+    const bowlFrames = numFrames => simulator => {
+      for (__ of range(1, numFrames)) {
+        simulator
+          .receive(keyDown('5'))
+          .receive(keyDown('5'))
+      }
+    }
+
+    simulate(run)
+      .do(bowlFrames(9))
+      .receive(keyDown('5'))
+      .assertDisplay(not(contains), 'GAME OVER')
+      .receive(keyDown('5'))
+      .assertDisplay(contains, 'GAME OVER')
+      .receive(keyDown('5'))
+      .assertDisplay(contains, 'GAME OVER')
+  },
+
+  // ...
+})
+```
+
+This fails. But I've violated my rule about keeping all the
+assertions in a test looking different. Let's split out
+a new test, and move the `bowlFrames` helper to the global
+scope.
+
+```javascript
+define({
+  // ...
+
+  bowlFrames: numFrames => simulator => {
+    for (__ of range(1, numFrames)) {
+      simulator
+        .receive(keyDown('5'))
+        .receive(keyDown('5'))
+    }
+  },
+
+  'test the game ends after 10 frames of 2 balls each'() {
+    simulate(run)
+      .do(bowlFrames(9))
+      .receive(keyDown('5'))
+      .assertDisplay(not(contains), 'GAME OVER')
+      .receive(keyDown('5'))
+      .assertDisplay(contains, 'GAME OVER')
+  },
+
+  'test I cannot bowl after the last frame'() {
+    simulate(run)
+      .do(bowlFrames(11))
+      .assertDisplay(contains, 'GAME OVER')
+  },
+
+  // ...
+})
+```
+
+And the implementation that makes it pass:
+
+```javascript
+  *run(score = 0, balls = 0) {
+    let gameOverMessage = balls >= 20 ? 'GAME OVER' : ''
+
+    yield startDisplay(() => [
+      `Total score: ${score}`,
+      'Bowl once and enter your score.',
+      'Press 0-9, or X for a strike',
+      gameOverMessage
+    ])
+
+    score += inputToNumber(yield waitForChar())
+    yield retry(run(score, balls + 1))
+  },
+```
+
+In order to really assert that I can't bowl after the last
+frame, it's not enough to check for the `GAME OVER` message.
+I should also make sure my score didn't increase when I
+tried to bowl that 11th frame.
+
+```javascript
+  'test I cannot bowl after the last frame'() {
+    simulate(run)
+      .do(bowlFrames(11))
+      .assertDisplay(contains, 'GAME OVER')
+      .assertDisplay(contains, 'Total score: 100')
+  },
+```
+
+The test fails, and I can see from the message that the
+program thinks my total score should be 110 after 11 frames.
+
+Getting this test to pass using the existing constructs in
+the `run` function is awkward enough to give me pause.
+It's hard to express the *finality* of `GAME OVER` in the
+same routine that does scorekeeping, so I decide to break
+out a new one.
+
+```javascript
+  *run(score = 0, balls = 0) {
+    if (balls >= 20) yield gameOver(score)
+
+    yield startDisplay(() => [
+      `Total score: ${score}`,
+      'Bowl once and enter your score.',
+      'Press 0-9, or X for a strike'
+    ])
+
+    score += inputToNumber(yield waitForChar())
+    yield retry(run(score, balls + 1))
+  },
+
+  *gameOver(finalScore) {
+    yield startDisplay(() => [
+      `Total score: ${score}`,
+      'GAME OVER'
+    ])
+    yield wait(Infinity)
+  },
+```
