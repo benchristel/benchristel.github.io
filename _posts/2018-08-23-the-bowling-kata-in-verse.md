@@ -44,7 +44,9 @@ throughout the kata, so I've added
 narrative to highlight where each step fits in the TDD cycle.
 
 If you don't mind spoilers, you can see [the half-finished kata here](/assets/bowling-kata/finished.html) (click the `RUN`
-button to see the program in action).
+button to see the program in action). You can also edit
+the code on that page, so you can try your own solution or
+follow along with mine.
 
 ## The Problem
 
@@ -1075,7 +1077,7 @@ out a new one.
 
   *gameOver(finalScore) {
     yield startDisplay(() => [
-      `Total score: ${score}`,
+      `Total score: ${finalScore}`,
       'GAME OVER'
     ])
     yield wait(Infinity)
