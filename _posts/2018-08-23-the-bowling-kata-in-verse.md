@@ -1130,3 +1130,18 @@ And I reaffirmed some things I'd already figured out:
 - It's best to refactor a test when it's failing, and
   to refactor production code when all the tests are
   passing.
+
+I also made some mistakes:
+
+- At one point I refactored some production code while a
+  test was failing. The danger of doing this is that it's
+  harder to notice when you've broken something.
+  I could have backed out the test change,
+  done the refactor, and re-added the test.
+- While extracting the `bowlFrames` test helper, I accidentally
+  hardcoded the upper bound of the loop to `10` instead of
+  using the `numFrames` parameter. I only realized my
+  mistake later, when my tests started acting strangely.
+  The change history was convoluted enough that I decided to
+  edit it out of this post, but it's a great
+  example of how complex test code can cause problems.
