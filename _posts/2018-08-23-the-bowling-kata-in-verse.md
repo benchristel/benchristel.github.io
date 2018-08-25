@@ -1082,7 +1082,7 @@ out a new one.
 Though this isn't the whole kata, it's probably enough for
 one post. I've already learned a lot from it, and I hope
 it's been at least somewhat entertaining to see my thought
-process as I TDD.
+process as I test-drive code.
 
 I honestly didn't expect to be *surprised* by this kata
 in any way. I started with a pretty clear picture in my
