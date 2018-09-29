@@ -43,10 +43,10 @@ throughout the kata, so I've added
 **red**, **green**, and **refactor** headings to the
 narrative to highlight where each step fits in the TDD cycle.
 
-If you don't mind spoilers, you can see [the half-finished kata here](/assets/bowling-kata/finished.html) (click the `RUN`
-button to see the program in action). You can also edit
-the code on that page, so you can try your own solution or
-follow along with mine.
+If you don't mind spoilers, you can see [the half-finished kata here](/assets/bowling-kata/first-pass.html)
+(click the `RUN` button to see the program in action). You
+can also edit the code on that page, so you can try your own
+solution or follow along with mine.
 
 ## The Problem
 
