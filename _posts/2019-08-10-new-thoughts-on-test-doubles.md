@@ -45,7 +45,7 @@ be used to seeing.
 ## Definitions
 
 Before we can begin to discuss the role of doubles in tests,
-we need to agree on some definitions.
+we need to agree on what a test double even *is*.
 
 In this article, I'm going to define the term _test double_
 very broadly, to include many entities that you probably
