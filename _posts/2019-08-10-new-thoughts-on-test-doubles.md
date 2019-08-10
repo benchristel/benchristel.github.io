@@ -207,6 +207,14 @@ function will be called whenever `AppState` is updated.
 In the test, the function passed to AppState is a
 double—specifically, a spy.
 
+The object `{foo: bar}` is a dummy: its purpose is to pass
+through `update`'s digestive tract unchanged and show up in
+the `data` field of the event, where we can detect it. Its
+apparent unrealism is actually a boon: it's clear to anyone
+reading this test that `{foo: bar}` is not meaningful to the
+application, so there's no illusion that `update` might have
+special logic related to this value.
+
 ### 2. Reading data via a stream (Golang)
 
 ```go
