@@ -5,7 +5,7 @@ title: New Thoughts on Test Doubles
 
 # New Thoughts on Test Doubles
 
-[Richard Gabriel wrote this about generative advice](dreamsongs.net/Repetition.html):
+[Richard Gabriel wrote this about generative advice](http://dreamsongs.net/Repetition.html):
 
 > When I play squash and mis-hit or misdirect the ball, I
 > chant, "follow through, follow through, you idiot." A
