@@ -33,8 +33,8 @@ until finally it collapses and the whole thing must be
 rewritten from scratch.
 
 By contrast, when you design well and test thoughtfully,
-code that's no longer needed stands out. Since it has
-clearly defined responsibilities and is decoupled from its
+code that's no longer needed stands out. Since it has a
+single clearly defined purpose and is decoupled from its
 surroundings, it can be pruned from the codebase as easily
 as a dead leaf can be plucked from a tree.
 
