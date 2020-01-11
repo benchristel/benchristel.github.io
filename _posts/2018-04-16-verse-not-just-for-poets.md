@@ -8,7 +8,7 @@ title: 'Verse: Not Just for Poets'
 I just released the [first tech
 demo](https://benchristel.github.io/pico-fermi-bagel) of my
 browser-based programming environment
-[Verse](https://github.com/druidic/verse).
+[Verse](https://github.com/benchristel/verse).
 
 ![A screenshot of the Verse editor running a simple game](/assets/verse-demo.png)
 
