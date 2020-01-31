@@ -455,14 +455,17 @@ use ES6 arrow function syntax, our code can be written as
 //   createRecurse --> x
 //   arg           --> a
 
-Y: f => (
-     x => f(x(x))
-   )(
-     x => a => f(x(x))(a)
-   )
+Y: f =>
+     (x =>
+       f(x(x)))
+     (x => a =>
+       f(x(x))(a))
 ```
 
-which translates almost exactly to [Haskell Curry's
+which, if you read it aloud, has a cute rhythm reminiscent
+of Dr. Seuss's "Hop on Pop".
+
+As a bonus, it translates almost exactly to [Haskell Curry's
 formulation of the Y combinator](https://en.wikipedia.org/wiki/Fixed-point_combinator#Y_combinator) in the lambda calculus:
 
 ```
