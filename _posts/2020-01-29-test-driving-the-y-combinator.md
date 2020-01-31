@@ -8,7 +8,7 @@ title: Test-driving the Y Combinator
 I've always found the Y Combinator to be one of computer
 science's most mind-boggling mysteries. No, not Y Combinator
 the startup accelerator; I'm talking about the [Y
-combinator]() of functional programming. **`Y` is a function
+combinator](https://en.wikipedia.org/wiki/Fixed-point_combinator#Y_combinator) of functional programming. **`Y` is a function
 that lets you express any recursive computation as
 an anony&shy;mous function.** For example, the following JavaScript
 computes the factorial of 10:
@@ -27,7 +27,7 @@ gained a reputation for being one of those arcane functional
 programming concepts that only wizards and geniuses
 understand. This reputation probably stems from its
 incomprehensibly compact definition, attributed to
-[Haskell Curry](https://en.wikipedia.org/wiki/Fixed-point_combinator#Y_combinator).
+[Haskell Curry](https://en.wikipedia.org/wiki/Haskell_Curry).
 Here it is in JavaScript:
 
 ```javascript
