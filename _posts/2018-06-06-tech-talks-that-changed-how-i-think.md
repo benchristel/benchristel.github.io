@@ -108,3 +108,50 @@ ability while giving the other parts of our brain the
 respect and care they deserve.
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/XeJSXfXep4M" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+## "You can be a kernel hacker!" — Julia Evans
+
+Julia's talk opened my eyes to a fact about OS design that, in
+retrospect, should have been obvious: operating systems are
+designed to help programmers, not to intimidate them, and
+once you've grokked that fact a whole world of amazingly
+helpful tools and techniques opens up to you.
+
+Also, contrary to what I'd previously believed, unrestricted side
+effects are not built into the nature of imperative
+programming. As early as the 1970s, programmers understood
+that unrestricted side effects were confusing and
+potentially dangerous. Thus, in Unix, all side effects must
+take place via the kernel's system call apparatus, a channel
+which is easily observable and readily intelligible.
+
+Julia's talk inspired the design of [Verse's](https://benchristel.github.io/verse)
+syscall-equivalent: side effects in Verse are
+represented as data yielded from a coroutine.
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/0IQlpFWTFbM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+## "Making Impossible States Impossible" — Richard Feldman
+
+When I started programming, I found static typing annoying:
+writing out types was just boring paperwork that I had to do
+so the compiler could optimize my program. Richard's talk
+flipped that belief on its head: types are for humans! Not
+only can they help you understand your code, they let you
+precisely encode the system's possible states, preventing
+runtime errors and bugs.
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/IcgmSRJHu_8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+## 6502 Computer Series — Ben Eater
+
+It's a truism that "computers are fundamentally imperative,
+stateful systems". But underlying that statefulness are
+analog, _functional_ elec&shy;tronics. To get imperative,
+stateful systems
+you have use hacks like [SR latches](https://www.youtube.com/watch?v=KM0DdEaY5sY) which feed the output
+of a functional system back into its input. You can even
+take advantage of the functional nature of computer systems
+to [encode complicated logic in ROM](https://www.youtube.com/watch?v=BA12Z7gQ4P0).
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/yl8vPW5hydQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
