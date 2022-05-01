@@ -21,7 +21,7 @@ Java is the only mainstream language that has checked exceptions. If you're writ
 
 But, like it or not, Java is the dominant "object-oriented" language, and it has had a profound influence on the culture of object-oriented programming generally. Patterns used in Java tend to sneak into other languages—whether or not they're actually useful in those languages.
 
-So it is with exceptions. Java may be the only mainstream language with checked exceptions, but it is _so_ mainstream that it seems Java's promulgation of checked exceptions has affected how programmers think about exceptions in other languages. And, as I said above, you can't do OO if you're representing all errors as checked exceptions. The examples that follow will make it clear why this is.
+So it is with exceptions. Java may be the only mainstream language with checked exceptions, but it is _so_ mainstream that it seems Java's promulgation of checked exceptions has affected how programmers think about exceptions in other languages. So in languages that do not have checked exceptions, you find developers making up for this "lack" with workarounds, like documentation and tests that describe what exceptions a method might throw. However, as I said above, you can't get the benefits of object orientation if you're thinking about exceptions this way. The examples that follow will make it clear why this is.
 
 So if you're doing object-oriented programming in *any* language, this matters to you. _Chances are, all of the exception-laden code you've seen is doing it wrong_—and it's Java's fault.
 
@@ -34,7 +34,7 @@ In order for me to grok the value of unchecked exceptions, my thinking about _wh
 Previously, I thought of exceptions as a kind of side dish to the return type of a method. For example, if you have a [`java.io.Writer`](https://docs.oracle.com/javase/7/docs/api/java/io/Writer.html), and you call `append("Hello, world!")` on it, you _might_ get a `Writer` instance in return, _or_ you might get an `IOException`. Two possibilities, that must be handled by different codepaths, and indeed by different syntax. For example:
 
 ```java
-// This is bad; don't do this!
+// This is an example of how NOT to do exception handling.
 try {
   writer = writer.append("Hello, world!");
 } catch (IOException e) {
@@ -208,7 +208,7 @@ This all would work great, except that there is still the possibility of an `IOE
 
 ## Checked Exceptions Limit Polymorphism
 
-The difficulty we encountered in the previous section occurs because Java requires each caller of an IO-involved method to shepherd its exception up the call stack. That means that nothing in that call stack can implement an interface that isn't declared to throw that specific type of exception.
+The difficulty we encountered in the previous section occurs because Java requires each caller of an IO-involved method to either handle `IOException`s or shepherd them up the call stack. That means that nothing in that call stack can implement an interface that isn't declared to throw that specific type of exception.
 
 Specifically, our desire to perform IO inside an iterator means we can't use the [ubiquitous type](https://benchristel.github.io/blog/2019/08/10/new-thoughts-on-test-doubles/) defined by the Java standard library to represent iteration. We have to either define our own iterator type that throws an IOException, or catch the IOException inside our iterator implementation and throw an unchecked exception instead. As you might guess, I recommend the second option.
 
@@ -218,7 +218,7 @@ To some, the route of using unchecked exceptions feels like we're cheating. Like
 
 It would be _really nice_, from the programmer's perspective, if all IO were completely reliable. However, in a networked or even multi-process environment, reliable IO is simply not possible. In the real world, machines go down, packets get lost, disks fail, and files get deleted out from under us.
 
-So forget about the real world. What we'd like to do is create a sort of fantasy world in the core of our program, shielded from the messy realities of IO. If we could create such a virtual world, we could use it as a kind of higher-level control flow construct. That is, we could set a computational process running within the fantasy world, and it would appear to the process that all IO is completely reliable. The vast majority of the time, the IO _will_ succeed and the process will finish without mishap, producing a return value. Sometimes, of course an IO operation will fail, in which case the illusion of reliable IO cannot be maintained. But rather than tell the process about the error, we simply pop the bubble of the fantasy world and the whole thing ceases to exist. We write its epitaph to our error logs, and the user gets a `500 Internal Server Error`.
+So forget about the real world. What we'd like to do is create a sort of fantasy world in the core of our program, shielded from the messy realities of IO. If we could create such a virtual world, we could use it as a kind of higher-level control flow construct. That is, we could set a computational process running within the fantasy world, and it would appear to the process that all IO is completely reliable. The vast majority of the time, the IO _will_ succeed and the process will finish without mishap, producing a return value. Sometimes, of course, an IO operation will fail, in which case the illusion of reliable IO cannot be maintained. But rather than tell the process about the error, we simply pop the bubble of the fantasy world and the whole thing ceases to exist. We write its epitaph to our error logs, and the user gets a `500 Internal Server Error`.
 
 One of the great legends of modern times (I'm not sure who came up with the idea first) is that of a computer that leverages quantum multiverse theory to solve any NP-hard problem in polynomial time. The way it works is this: the computer uses quantum randomness to generate a guess at a solution. If the guess happens to be correct (which can be verified in polynomial time), it's returned to the user. If it's wrong, then the computer simply destroys the universe. The only remaining universes are those in which the problem is solved.
 
