@@ -3,6 +3,11 @@ layout: post
 title: Against Checked Exceptions
 ---
 
+> An error exit can be considered well-structured for precisely this reason -- it corresponds to a situation that is impossible according to the local invariant assertions; it is easiest to formulate assertions that assume nothing will go wrong, rather than to make the invariants cover all contingencies. When we jump out to an error exit we go to another level of abstraction having
+different assumptions.
+>
+> —Donald Knuth, [Structured Programming With go to Statements](https://dl.acm.org/doi/pdf/10.1145/356635.356640)
+
 A few people, all with many more years of Java experience than I, have remarked to me in passing that "checked exceptions in Java were a mistake" and that you should "only use runtime exceptions (i.e. those that aren't typechecked by the Java compiler)". This view always puzzled me, because to me, it seemed that exceptions that might be thrown were, semantically, part of the "return type" of a method and that if you *can* typecheck the return value of a language, you *should*.
 
 This view is reinforced by languages like Go, Haskell, and Elm, where there are no exceptions and functions simply return information about errors they encounter. On the surface, this seems much more civilized, because the type system can both ensure the error is handled and document its chain of custody as it's returned up the call stack. This is how functional languages like Elm can claim they have "no runtime errors"—they force the programmer to handle all exceptional cases explicitly.
